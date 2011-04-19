@@ -12,7 +12,7 @@ set :use_sudo, false
 set :deploy_to, '/srv/www/rubychangelog.org'
 
 
-role :web, 'beaker.inodes.org'
+role :app, 'beaker.inodes.org'
 
 namespace :deploy do
   task :start do ; end
