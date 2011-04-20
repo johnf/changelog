@@ -4,6 +4,8 @@ gem 'rails', '3.0.7'
 
 gem 'sqlite3'
 
+gem 'admin_data'
+
 group :development, :test do
   gem 'cucumber-rails'
   gem 'capybara'
