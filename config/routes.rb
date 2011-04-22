@@ -1,5 +1,8 @@
 Changelog::Application.routes.draw do
 
-  post "hook/rubygems"
+  devise_for :users
 
+  root :to => 'pages#home'
+
+  post "hook/rubygems"
 end

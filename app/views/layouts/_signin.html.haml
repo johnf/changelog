@@ -1,0 +1,8 @@
+
+%ul
+  - if user_signed_in?
+    %li== logged in as #{current_user.handle}
+    %li= link_to 'Sign out', destroy_user_session_path
+  - else
+    %li= link_to 'Sign in', new_user_session_path
+    %li= link_to 'Register', new_user_registration_path

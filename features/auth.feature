@@ -1,0 +1,15 @@
+Feature: Users have accounts
+  In order to get my changelogs
+  As a user
+  I want to create an account and login
+
+  Scenario: Creating a new account
+    Given I am logged out
+    When I register an account for johnf@inodes.org with handle johnf
+     And I confirm the account for johnf@inodes.org
+   Given I am logged out
+     And I log in as johnf@inodes.org
+    Then I should be logged in as johnf
+
+  # TODO Add more features to test all elements of devise we care about.
+
