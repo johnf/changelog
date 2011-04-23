@@ -13,6 +13,7 @@ set :deploy_to, '/srv/www/rubychangelog.org'
 
 
 role :app, 'beaker.inodes.org'
+role :db, 'beaker.inodes.org', :primary => true
 
 namespace :deploy do
   task :start do ; end
