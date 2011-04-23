@@ -11,5 +11,12 @@ Feature: Users have accounts
      And I log in as johnf@inodes.org
     Then I should be logged in as johnf
 
+  @production
+  Scenario: Only admin users can see the admin data
+    Given I register and confirm an account for johnf@inodes.org with handle johnf
+    When I go to the admin data root page
+    Then I should see "not authorized"
+
+
   # TODO Add more features to test all elements of devise we care about.
 
