@@ -1,36 +1,28 @@
-require 'net/http'
-
 # TODO
-# - Deal with http errors
+# - Deal with fetch errors
 # - Deal with URI.parse errors
 # - Superclass the common methods
 
 module Languages
   module Ruby
     class Gem
-      def self.fetch(rubygem)
+      def self.fetch_and_extract(rubygem)
 
-        uri = URI.parse rubygem.gem_uri
+        dep = ::Gem::Dependency.new rubygem.name, rubygem.version
+        specs_and_sources = ::Gem::SpecFetcher.fetcher.fetch(dep, false, true, true)
 
-        Net::HTTP.start(uri.host, uri.port) do |http|
-          output = open cache_filename(rubygem), 'wb'
-          begin
-            http.request_get('/sample.flv') do |response|
-              response.read_body do |segment|
-                output.write segment
-              end
-            end
-          ensure
-            output.close
-          end
-        end
+        spec, source_uri = specs_and_sources.sort_by { |s,| s.version }.last
 
-        cache_filename(rubygem)
+        path = ::Gem::RemoteFetcher.fetcher.download spec, source_uri
+
+        target_dir = WORK_PATH + "/#{rubygem.name}-#{rubygem.version}"
+        FileUtils.mkdir_p target_dir
+
+        ::Gem::Installer.new(path, :unpack => true).unpack target_dir
       end
 
       def self.cache_filename(rubygem)
-        # TODO sanitize filename
-        CACHE_PATH + "/ruby/gems/#{rubygem.name}-#{rubygem.version}.gem"
+        CACHE_PATH + "/ruby/gems"
       end
 
     end
