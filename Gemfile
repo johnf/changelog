@@ -22,4 +22,7 @@ group :development, :test do
   gem 'email_spec'
 
   gem 'capistrano'
+
+  gem 'vcr'
+  gem 'webmock'
 end
