@@ -11,8 +11,6 @@ gem 'devise'
 gem 'haml-rails'
 gem 'jquery-rails'
 
-gem 'curb'
-
 group :development, :test do
   gem 'sqlite3'
 
