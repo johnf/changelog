@@ -4,6 +4,10 @@ class Rubygem < ActiveRecord::Base
   validate :description, :presence
   validate :gem_uri, :presence
 
+  def changelog_file_path
+    "#{Rails.root}/public/changelogs/rubygem/#{self.id}"
+  end
+
   def import_json(json)
     data = JSON.parse json
     self.name = data['name']

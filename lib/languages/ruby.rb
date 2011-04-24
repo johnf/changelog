@@ -15,14 +15,35 @@ module Languages
 
         path = ::Gem::RemoteFetcher.fetcher.download spec, source_uri
 
-        target_dir = WORK_PATH + "/#{rubygem.name}-#{rubygem.version}"
+        target_dir = work_dir rubygem
         FileUtils.mkdir_p target_dir
 
         ::Gem::Installer.new(path, :unpack => true).unpack target_dir
       end
 
-      def self.cache_filename(rubygem)
-        CACHE_PATH + "/ruby/gems"
+      def self.find_changelog(rubygem)
+        dirs = Dir.glob "#{work_dir rubygem}/*"
+        dirs.map! {|f| File.basename f}
+        dirs = dirs.select { |f| f =~ CHANGELOG_NAME_REGEX }
+        if dirs.size > 1
+          raise "Too many changelog matches"
+        end
+
+        dirs.first
+      end
+
+      def self.attach_changelog(rubygem, changelog)
+        if changelog.nil?
+          rubygem.status = 'missing'
+        else
+          FileUtils.cp "#{work_dir rubygem}/#{changelog}", rubygem.changelog_file_path
+          rubygem.status = 'attached'
+          rubygem.save!
+        end
+      end
+
+      def self.work_dir(rubygem)
+        WORK_PATH + "/ruby/gems/#{rubygem.name}-#{rubygem.version}"
       end
 
     end

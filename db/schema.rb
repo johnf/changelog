@@ -10,16 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110422115704) do
+ActiveRecord::Schema.define(:version => 20110424092005) do
 
   create_table "rubygems", :force => true do |t|
-    t.string   "name",            :null => false
-    t.string   "version",         :null => false
-    t.text     "description",     :null => false
-    t.string   "gem_uri",         :null => false
+    t.string   "name",                               :null => false
+    t.string   "version",                            :null => false
+    t.text     "description",                        :null => false
+    t.string   "gem_uri",                            :null => false
     t.string   "source_code_uri"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "status",          :default => "new", :null => false
   end
 
   create_table "users", :force => true do |t|
