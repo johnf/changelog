@@ -2,6 +2,7 @@
 # - Deal with fetch errors
 # - Deal with URI.parse errors
 # - Superclass the common methods
+# - TODO deal with multiple platforms
 WORK_PATH = "#{Rails.root}/tmp/extracted/"
 
 CHANGELOG_NAME_REGEX = %r{^(changes|changelog|history)(\.(md|markdown|rdoc|txt))?$}i
@@ -14,7 +15,12 @@ module Languages
 
         spec = ::Gem::Specification.new rubygem.name, rubygem.version
 
-        path = ::Gem::RemoteFetcher.fetcher.download spec, 'http://rubygems.org'
+        begin
+          path = ::Gem::RemoteFetcher.fetcher.download spec, 'http://rubygems.org'
+        rescue Gem::RemoteFetcher::FetchError
+          rubygem.status = 'fetch_error'
+          rubygem.save!
+        end
 
         target_dir = work_dir rubygem
         FileUtils.mkdir_p target_dir
