@@ -27,7 +27,9 @@ module Languages
         dirs.map! {|f| File.basename f}
         dirs = dirs.select { |f| f =~ CHANGELOG_NAME_REGEX }
         if dirs.size > 1
-          raise "Too many changelog matches"
+          rubygem.status = 'multiple'
+          rubygem.save!
+          return
         end
 
         dirs.first
