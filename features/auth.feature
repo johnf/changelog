@@ -17,6 +17,12 @@ Feature: Users have accounts
     When I go to the admin data root page
     Then I should see "not authorized"
 
+  @production
+  Scenario: Only admin users can see delayed_job_admin
+    Given I register and confirm an account for johnf@inodes.org with handle johnf
+    When I go to the delayed job admin page
+    Then I should see "not authorized"
+
 
   # TODO Add more features to test all elements of devise we care about.
 

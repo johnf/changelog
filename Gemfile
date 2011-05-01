@@ -11,6 +11,9 @@ gem 'devise'
 gem 'haml-rails'
 gem 'jquery-rails'
 
+gem 'delayed_job'
+gem 'delayed_job_admin'
+
 group :development, :test do
   gem 'sqlite3'
 
