@@ -12,12 +12,9 @@ module Languages
     class Gem
       def self.fetch_and_extract(rubygem)
 
-        dep = ::Gem::Dependency.new rubygem.name, rubygem.version
-        specs_and_sources = ::Gem::SpecFetcher.fetcher.fetch(dep, false, true, true)
+        spec = ::Gem::Specification.new rubygem.name, rubygem.version
 
-        spec, source_uri = specs_and_sources.sort_by { |s,| s.version }.last
-
-        path = ::Gem::RemoteFetcher.fetcher.download spec, source_uri
+        path = ::Gem::RemoteFetcher.fetcher.download spec, 'http://rubygem.org'
 
         target_dir = work_dir rubygem
         FileUtils.mkdir_p target_dir
