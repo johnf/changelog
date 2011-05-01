@@ -2,6 +2,10 @@
 # - Deal with fetch errors
 # - Deal with URI.parse errors
 # - Superclass the common methods
+WORK_PATH = "#{Rails.root}/tmp/extracted/"
+
+CHANGELOG_NAME_REGEX = %r{^(changes|changelog|history)(\.(md|markdown|rdoc|txt))?$}i
+
 
 module Languages
   module Ruby

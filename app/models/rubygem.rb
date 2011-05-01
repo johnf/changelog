@@ -5,7 +5,7 @@ class Rubygem < ActiveRecord::Base
   validate :gem_uri, :presence
 
   def changelog_file_path
-    "#{Rails.root}/public/changelogs/rubygem/#{self.id}"
+    "#{Rails.root}/public/system/changelogs/rubygem/#{self.id}"
   end
 
   def fetch_changelog
