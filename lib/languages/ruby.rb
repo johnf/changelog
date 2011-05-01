@@ -36,8 +36,10 @@ module Languages
       end
 
       def self.attach_changelog(rubygem, changelog)
-        if changelog.nil? and rubygem.status == 'new'
-          rubygem.status = 'missing'
+        if changelog.nil?
+          if rubygem.status == 'new'
+            rubygem.status = 'missing'
+          end
         else
           FileUtils.cp "#{work_dir rubygem}/#{changelog}", rubygem.changelog_file_path
           rubygem.status = 'attached'
