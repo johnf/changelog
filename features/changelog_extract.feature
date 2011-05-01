@@ -17,4 +17,6 @@ Feature: Extract changelogs from gem or git
     Then the rubygem database_cleaner with version 0.6.7.RC should have status attached
      And the rubygem database_cleaner with version 0.6.7.RC should have a changelog
 
-  
+    When I fetch the changelog for the rubygem database_cleaner with version 0.6.7.RC
+    Then the rubygem database_cleaner with version 0.6.7.RC should have status attached
+     And the rubygem database_cleaner with version 0.6.7.RC should have a changelog

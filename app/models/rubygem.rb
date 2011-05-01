@@ -8,6 +8,12 @@ class Rubygem < ActiveRecord::Base
     "#{Rails.root}/public/changelogs/rubygem/#{self.id}"
   end
 
+  def fetch_changelog
+    Languages::Ruby::Gem.fetch_and_extract self
+    changelog = Languages::Ruby::Gem.find_changelog self
+    Languages::Ruby::Gem.attach_changelog self, changelog
+  end
+
   def import_json(json)
     data = JSON.parse json
     self.name = data['name']

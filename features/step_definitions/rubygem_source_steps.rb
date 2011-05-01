@@ -32,3 +32,10 @@ Then /^the rubygem (\S+) with version (\S+) should have a changelog$/ do |name, 
   rubygem = Rubygem.find_by_name_and_version name, version
   File.exists?(rubygem.changelog_file_path).should == true
 end
+
+When /^I fetch the changelog for the rubygem (\S+) with version (\S+)$/ do |name, version|
+  rubygem = Rubygem.find_by_name_and_version name, version
+  rubygem.fetch_changelog
+end
+
+
