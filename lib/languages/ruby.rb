@@ -39,8 +39,8 @@ module Languages
         else
           FileUtils.cp "#{work_dir rubygem}/#{changelog}", rubygem.changelog_file_path
           rubygem.status = 'attached'
-          rubygem.save!
         end
+        rubygem.save!
       end
 
       def self.work_dir(rubygem)
