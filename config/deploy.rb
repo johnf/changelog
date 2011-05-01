@@ -26,6 +26,7 @@ end
 
 before "deploy:setup", "db:configure"
 after "deploy:update_code", "db:symlink"
+after "deploy:update_code", "app:symlink"
 
 namespace :db do
   desc "Create database yaml in shared path"
@@ -44,5 +45,11 @@ namespace :db do
   desc "Make symlink for database yaml"
   task :symlink do
     run "ln -nfs #{shared_path}/config/database.yml #{latest_release}/config/database.yml"
+  end
+end
+
+namespace :app do
+  task :symlink do
+    run "ln -nfs #{shared_path}/changelogs #{latest_release}/public/changelogs"
   end
 end
