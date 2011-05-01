@@ -20,6 +20,7 @@ module Languages
         rescue ::Gem::RemoteFetcher::FetchError
           rubygem.status = 'fetch_error'
           rubygem.save!
+          return
         end
 
         target_dir = work_dir rubygem
