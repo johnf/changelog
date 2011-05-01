@@ -17,7 +17,7 @@ module Languages
 
         begin
           path = ::Gem::RemoteFetcher.fetcher.download spec, 'http://rubygems.org'
-        rescue Gem::RemoteFetcher::FetchError
+        rescue ::Gem::RemoteFetcher::FetchError
           rubygem.status = 'fetch_error'
           rubygem.save!
         end
