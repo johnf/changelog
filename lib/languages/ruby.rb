@@ -14,7 +14,7 @@ module Languages
 
         spec = ::Gem::Specification.new rubygem.name, rubygem.version
 
-        path = ::Gem::RemoteFetcher.fetcher.download spec, 'http://rubygem.org'
+        path = ::Gem::RemoteFetcher.fetcher.download spec, 'http://rubygems.org'
 
         target_dir = work_dir rubygem
         FileUtils.mkdir_p target_dir
