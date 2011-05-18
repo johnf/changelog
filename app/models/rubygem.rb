@@ -1,5 +1,5 @@
 class Rubygem < ActiveRecord::Base
-  default_scope order('version DESC')
+  default_scope order('id DESC')
 
   validate :name, :presence
   validate :version, :presence
