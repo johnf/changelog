@@ -1,7 +1,7 @@
 class RubygemsController < ApplicationController
 
   def show
-    @rubygems = Rubygem.where :name => params[:name]
+    @rubygems = Rubygem.limit(5).where :name => params[:name]
     @latest = @rubygems.first
   end
 
