@@ -1,8 +1,11 @@
 class Rubygem < ActiveRecord::Base
+  default_scope order('version DESC')
+
   validate :name, :presence
   validate :version, :presence
   validate :description, :presence
   validate :gem_uri, :presence
+
 
   def changelog_file_path
     "#{Rails.root}/public/system/changelogs/rubygem/#{self.id}"

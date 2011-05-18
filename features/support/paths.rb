@@ -16,6 +16,8 @@ module NavigationHelpers
     #
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
+    when /^the (\S+) rubygem page$/
+      rubygem_path :name => $1
 
     else
       begin

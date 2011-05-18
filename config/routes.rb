@@ -5,4 +5,6 @@ Changelog::Application.routes.draw do
   root :to => 'pages#home'
 
   post "hook/rubygems"
+
+  match '/rubygems/:name' => 'rubygems#show', :as => :rubygem
 end

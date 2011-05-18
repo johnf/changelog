@@ -1,0 +1,11 @@
+
+%p.name= @latest.name 
+%p.version= @latest.version
+%p.description= @latest.description
+
+.versions
+  Versions
+
+  %ul
+    - @rubygems.each do |rubygem|
+      %li= rubygem.version
