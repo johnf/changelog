@@ -8,4 +8,9 @@
 
   %ul
     - @rubygems.each do |rubygem|
-      %li= rubygem.version
+      %li{:id => "version-#{rubygem.version.gsub(/\./, '_')}"}
+        = rubygem.version
+        - if rubygem.has_changelog?
+          = link_to 'Changelog', changelog_rubygem_path(rubygem)
+        -else
+          No Changelog

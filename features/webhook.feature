@@ -13,3 +13,7 @@ Feature: Process rubygems webhooks
         | description     | Ruby on Rails is a full-stack web framework |
         | gem_uri         | http://rubygems.org/gems/rails-3.0.7.gem |
         | source_code_uri | http://github.com/rails/rails |
+    When the jobs are dispatched
+     And I go to the rails rubygem page
+    Then I should see "3.0.7" within ".versions"
+     And I should see "Changelog" within "#version-3_0_7"

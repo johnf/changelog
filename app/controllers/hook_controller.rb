@@ -6,7 +6,13 @@ class HookController < ApplicationController
     @rubygem = Rubygem.new
     @rubygem.import_json request.raw_post
 
-    flash[:notice] = "Registered gem." if @rubygem.save
+    if @rubygem.save
+      flash[:notice] = "Registered gem."
+      @rubygem.delay.fetch_changelog
+    end
+
+    # TODO log hook failures
+
     respond_with @rubygem, :location => '/'
   end
 

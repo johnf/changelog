@@ -1,4 +1,5 @@
-require "bundler/capistrano"
+require 'bundler/capistrano'
+require 'delayed/recipes'
 
 set :application, 'changelog'
 set :repository,  'git@github.com:johnf/changelog.git'
@@ -24,16 +25,16 @@ namespace :deploy do
 end
 
 
-before "deploy:setup", "db:configure"
-after "deploy:setup", "app:setup"
+before 'deploy:setup', 'db:configure'
+after 'deploy:setup', 'app:setup'
 
-after "deploy:update_code", "db:symlink"
+after 'deploy:update_code', 'db:symlink'
 
 namespace :db do
-  desc "Create database yaml in shared path"
+  desc 'Create database yaml in shared path'
   task :configure do
     set :database_password do
-      Capistrano::CLI.password_prompt "Database Password: "
+      Capistrano::CLI.password_prompt 'Database Password: '
     end
 
     db_config = File.read 'config/database.yml'
@@ -43,7 +44,7 @@ namespace :db do
     put db_config, "#{shared_path}/config/database.yml"
   end
 
-  desc "Make symlink for database yaml"
+  desc 'Make symlink for database yaml'
   task :symlink do
     run "ln -nfs #{shared_path}/config/database.yml #{latest_release}/config/database.yml"
   end
@@ -54,3 +55,11 @@ namespace :app do
     run "mkdir -p #{shared_path}/system/changelogs/rubygem"
   end
 end
+
+
+# Delayed Job
+before "deploy:restart", "delayed_job:stop"
+after  "deploy:restart", "delayed_job:start"
+
+after "deploy:stop",  "delayed_job:stop"
+after "deploy:start", "delayed_job:start"

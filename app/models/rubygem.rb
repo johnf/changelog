@@ -6,6 +6,9 @@ class Rubygem < ActiveRecord::Base
   validate :description, :presence
   validate :gem_uri, :presence
 
+  def has_changelog?
+    status == 'attached'
+  end
 
   def changelog_file_path
     "#{Rails.root}/public/system/changelogs/rubygem/#{self.id}"
