@@ -29,6 +29,11 @@ module Languages
         ::Gem::Installer.new(path, :unpack => true).unpack target_dir
       end
 
+      def self.cleanup(rubygem)
+        target_dir = work_dir rubygem
+        FileUtils.rm_rf target_dir
+      end
+
       def self.find_changelog(rubygem)
         dirs = Dir.glob "#{work_dir rubygem}/*"
         dirs.map! {|f| File.basename f}

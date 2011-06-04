@@ -18,6 +18,7 @@ class Rubygem < ActiveRecord::Base
     Languages::Ruby::Gem.fetch_and_extract self
     changelog = Languages::Ruby::Gem.find_changelog self
     Languages::Ruby::Gem.attach_changelog self, changelog
+    Languages::Ruby::Gem.cleanup self
   end
 
   def import_json(json)
