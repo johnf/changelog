@@ -28,4 +28,6 @@ group :development, :test do
 
   gem 'vcr'
   gem 'webmock'
+
+  gem 'launchy'
 end

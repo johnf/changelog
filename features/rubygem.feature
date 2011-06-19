@@ -16,5 +16,8 @@ Feature: Rubygems have pages
      Then I should see "database_cleaner" within ".name"
       And I should see "0.6.6" within ".versions"
       And I should see "0.6.7" within ".versions"
+     When I follow "Changelog"
+      And I should see "Explicity require ERB"
+     Then show me the page
 
 

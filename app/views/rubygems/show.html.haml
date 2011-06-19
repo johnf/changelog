@@ -11,6 +11,6 @@
       %li{:id => "version-#{rubygem.version.gsub(/\./, '_')}"}
         = rubygem.version
         - if rubygem.has_changelog?
-          = link_to 'Changelog', changelog_rubygem_path(rubygem)
+          = link_to 'Changelog', changelog_path(rubygem)
         -else
           No Changelog
