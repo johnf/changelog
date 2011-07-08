@@ -2,10 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.0.rc4'
 
-
-
-
-gem 'mysql2', '~> 0.2.7'
+gem 'mysql2'
 
 # Asset template engines
 gem 'sass-rails', "~> 3.1.0.rc"
@@ -23,7 +20,9 @@ gem 'capistrano'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
-gem 'admin_data'
+#gem 'admin_data'
+#gem "will_paginate", :git => "https://github.com/p7r/will_paginate.git", :branch => "rails3" # Untill https://github.com/mislav/will_paginate/issues/124
+
 
 gem 'devise'
 
