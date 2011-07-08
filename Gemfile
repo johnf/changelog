@@ -1,8 +1,27 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.7'
+gem 'rails', '3.1.0.rc4'
+
+
+
 
 gem 'mysql2', '~> 0.2.7'
+
+# Asset template engines
+gem 'sass-rails', "~> 3.1.0.rc"
+gem 'coffee-script'
+gem 'uglifier'
+
+gem 'jquery-rails'
+
+# Use unicorn as the web server
+gem 'unicorn'
+
+# Deploy with Capistrano
+gem 'capistrano'
+
+# To use debugger
+# gem 'ruby-debug19', :require => 'ruby-debug'
 
 gem 'admin_data'
 
@@ -23,8 +42,6 @@ group :development, :test do
 
   gem 'rspec-rails'
   gem 'email_spec'
-
-  gem 'capistrano'
 
   gem 'vcr'
   gem 'webmock'
