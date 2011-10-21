@@ -8,8 +8,9 @@ gem 'mysql2'
 # in production environments by default.
 group :assets do
   gem 'sass-rails', '~> 3.1.4'
-  gem 'coffee-script', '~> 3.1.1'
+  gem 'coffee-rails', '~> 3.1.1'
   gem 'uglifier', '>= 1.0.3'
+end
 
 gem 'jquery-rails'
 
@@ -37,7 +38,11 @@ gem 'jquery-rails'
 gem 'delayed_job'
 gem 'delayed_job_admin'
 
-group :development, :test do
+group :development do
+  gem 'sqlite3'
+end
+
+group :test do
   gem 'sqlite3'
 
   gem 'cucumber-rails'
